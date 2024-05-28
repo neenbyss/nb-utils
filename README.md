@@ -91,6 +91,49 @@ exports['nb-utils']:drawTxt({
 })
 ```
 
+### 5. `exports['nb-utils']:bodyObject`
+
+Adjuntar un objeto a la mano derecha del personaje del jugador.
+
+```lua
+exports['nb-utils']:bodyObject({
+    model = "hw1_06_ldr_", 
+    boneName = "hand_right",
+    offset = {x = -2.5, y = -0.50, z = 0.0},
+    rotation = {x = 0.0, y = 90.0, z = 0.0}
+})
+```
+
+#### Ejemplo de Uso con `boneCustom`
+
+Adjuntar un objeto a un índice de hueso personalizado.
+
+```lua
+exports['nb-utils']:bodyObject({
+    model = "hw1_06_ldr_", 
+    boneCustom = 28422,
+    offset = {x = -2.5, y = -0.50, z = 0.0},
+    rotation = {x = 0.0, y = 90.0, z = 0.0}
+})
+```
+
+#### Parámetros de la Función
+
+- **`model`** (string): El nombre del modelo del objeto a adjuntar. Debe ser el hash key del modelo.
+- **`boneName`** (string, opcional): El nombre del hueso al que se adjuntará el objeto. Este nombre se mapea a un índice de hueso predefinido.
+- **`boneCustom`** (number, opcional): El índice personalizado del hueso. Si se proporciona, se usará en lugar de `boneName`.
+- **`offset`** (table): Desplazamiento del objeto desde el punto de anclaje. Debe contener las claves `x`, `y` y `z`.
+- **`rotation`** (table): Rotación del objeto. Debe contener las claves `x`, `y` y `z`.
+
+### 6. `exports['nb-utils']:createObject`
+
+```
+exports['nb-utils']:createObject({
+        model = "hw1_06_ldr_",
+        coords = vector4(623.18, -244, 42, 240.88)
+    })
+```
+
 ### Ejemplo completo
 
 ```lua
