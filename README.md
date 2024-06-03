@@ -134,18 +134,76 @@ exports['nb-utils']:createObject({
     })
 ```
 
+### 1. `exports['nb-utils']:sendDiscordWebhook`
+
+#### Descripción
+Envía un mensaje o un embed a un webhook de Discord.
+
+#### Parámetros
+- `config` (tabla): Tabla de configuración que contiene los detalles del webhook y el mensaje.
+
+##### Campos de `config`
+- `url` (cadena, requerido): La URL del webhook de Discord.
+- `msg` (cadena, opcional): El contenido del mensaje a enviar.
+- `name` (cadena, opcional): El nombre del bot que enviará el mensaje. Por defecto es "Webhook Bot".
+- `avatar` (cadena, opcional): La URL del avatar del bot.
+- `embeds` (tabla, opcional): Una tabla que contiene los embeds a enviar. Los campos típicos de un embed incluyen:
+  - `title` (cadena, opcional): El título del embed.
+  - `description` (cadena, opcional): La descripción del embed.
+  - `color` (número, opcional): El color del embed en formato decimal.
+  - `fields` (tabla, opcional): Una tabla de campos, donde cada campo es una tabla con los siguientes elementos:
+    - `name` (cadena, requerido): El nombre del campo.
+    - `value` (cadena, requerido): El valor del campo.
+    - `inline` (booleano, opcional): Indica si el campo debe mostrarse en línea. Por defecto es `false`.
+  - `footer` (tabla, opcional): Una tabla con los siguientes elementos:
+    - `text` (cadena, requerido): El texto del pie de página.
+    - `icon_url` (cadena, opcional): La URL del ícono del pie de página.
+  - `timestamp` (cadena, opcional): La fecha y hora en formato ISO 8601.
+
+#### Uso
+
+Enviar un mensaje simple:
+```lua
+sendDiscordWebhook({
+    url = "https://discord.com/api/webhooks/your_webhook_id/your_webhook_token",
+    msg = "Este es un mensaje de prueba desde Lua en FiveM!",
+    name = "Test Bot",
+    avatar = "https://your-avatar-url.com/avatar.png"
+})
+```
+
+Enviar un mensaje con un embed:
+```lua
+sendDiscordWebhook({
+    url = "https://discord.com/api/webhooks/your_webhook_id/your_webhook_token",
+    name = "Test Bot",
+    avatar = "https://your-avatar-url.com/avatar.png",
+    embeds = {{
+        title = "Título del Embed",
+        description = "Descripción del embed",
+        color = 16711680, -- Color en formato decimal (hex: 0xFF0000)
+        fields = {{
+            name = "Campo 1",
+            value = "Valor del campo 1",
+            inline = true
+        }, {
+            name = "Campo 2",
+            value = "Valor del campo 2",
+            inline = true
+        }},
+        footer = {
+            text = "Texto del pie de página",
+            icon_url = "https://your-footer-icon-url.com/icon.png"
+        },
+        timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ") -- Fecha y hora en formato ISO 8601
+    }}
+})
+```
+
+
 ### Ejemplo completo
 
 ```lua
-CreateThread(function()
-    -- Agrega un blip en el mapa
-    exports['nb-utils']:addBlip({
-        sprite = 1,
-        text = "Hola",
-        coords = vector4(752.18, 6461.51, 31.1, 96.96),
-        router = false
-    })
-end)
 
 CreateThread(function ()
     while true do
