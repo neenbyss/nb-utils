@@ -4,7 +4,7 @@ game 'gta5'
 name "nb-utils"
 description "Funciones utiles"
 author "neenbyss"
-version "1.0.0"
+version "1.2.0"
 
 shared_scripts {
 	'shared/*.lua'

@@ -137,7 +137,7 @@ exports['nb-utils']:createObject({
 ### 1. `exports['nb-utils']:sendDiscordWebhook`
 
 #### Descripción
-Envía un mensaje o un embed a un webhook de Discord.
+Envía un mensaje o un embed a un webhook de Discord. Es de tipo server
 
 #### Parámetros
 - `config` (tabla): Tabla de configuración que contiene los detalles del webhook y el mensaje.
